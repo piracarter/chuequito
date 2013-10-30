@@ -4,5 +4,6 @@
     <string name="app_name">example10</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-
+	<string name="Title_room">Room Title</string>
+	<string name="contentdescriptionrowroom">Describe image Room</string>
 </resources>
