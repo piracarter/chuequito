@@ -4,7 +4,13 @@ public class Room {
 	private String Titulo;
 	private String Descripcion;
 	private double Precio;
-	private String vista;
+	private int vista;
+	public Room(String Titulo, String Descripcion, double Precio, int vista){
+		this.Titulo = Titulo;
+		this.Descripcion = Descripcion;
+		this.Precio = Precio;
+		this.vista = vista;
+	}
 	public String getTitulo() {
 		return Titulo;
 	}
@@ -23,10 +29,10 @@ public class Room {
 	public void setPrecio(double precio) {
 		Precio = precio;
 	}
-	public String getVista() {
+	public int getVista() {
 		return vista;
 	}
-	public void setVista(String vista) {
+	public void setVista(int vista) {
 		this.vista = vista;
 	}
 }

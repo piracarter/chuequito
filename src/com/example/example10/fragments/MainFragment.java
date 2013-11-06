@@ -7,19 +7,27 @@ import android.app.ActionBar.TabListener;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.example10.data.CustomPagerAdapter;
+import com.example.example10.R;
+
 @SuppressLint("NewApi")
-public class MainFragment extends Fragment implements TabListener {
-	
+public class MainFragment extends Fragment implements TabListener, ViewPager.OnPageChangeListener {
+
+	CustomPagerAdapter adapter;
+    private ViewPager view_pager;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		return super.onCreateView(inflater, container, savedInstanceState);
+		View view = inflater.inflate(R.layout.view_pager, null);
+        view_pager = (ViewPager) view.findViewById(R.id.pager);
+        return view;
 	}
 	@SuppressLint("NewApi")
 	@Override
@@ -36,6 +44,13 @@ public class MainFragment extends Fragment implements TabListener {
         bar.addTab(bar.newTab().setText("Comentarios").setTabListener(this));
         bar.addTab(bar.newTab().setText("Ubicacion").setTabListener(this));
         bar.setSubtitle("Hotel Chuequito");
+        
+        /* SECCION PARA EL VIEW PAGER */
+        
+        adapter = new CustomPagerAdapter(getActivity().getSupportFragmentManager());
+        view_pager.setAdapter(adapter);
+        view_pager.setOnPageChangeListener(this);
+
 	}
 	@Override
 	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
@@ -50,6 +65,25 @@ public class MainFragment extends Fragment implements TabListener {
 	}
 	@Override
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+		
+	}
+	/*  ViewPager.OnPageChangeListener
+	 * (non-Javadoc)
+	 * @see android.support.v4.view.ViewPager.OnPageChangeListener#onPageScrollStateChanged(int)
+	 */
+	@Override
+	public void onPageScrollStateChanged(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onPageScrolled(int arg0, float arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onPageSelected(int arg0) {
 		// TODO Auto-generated method stub
 		
 	}

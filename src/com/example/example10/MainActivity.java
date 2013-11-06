@@ -5,13 +5,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
-
 import com.example.example10.fragments.MainFragment;
 
 
 
 public class MainActivity extends FragmentActivity {
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,4 +26,6 @@ public class MainActivity extends FragmentActivity {
                        .commit();
         
 	}
+	
+
 }
