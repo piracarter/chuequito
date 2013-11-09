@@ -6,4 +6,7 @@
     <string name="hello_world">Hello world!</string>
 	<string name="Title_room">Room Title</string>
 	<string name="contentdescriptionrowroom">Describe image Room</string>
+	<string name="description">Aqui la descripcion de la habitacion</string>
+	<string name="labelprice">Precio</string>
+	<string name="price">0.00</string>
 </resources>

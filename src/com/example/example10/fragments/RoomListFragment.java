@@ -2,23 +2,34 @@ package com.example.example10.fragments;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 
 import com.example.example10.R;
+import com.example.example10.RoomDetailActivity;
 import com.example.example10.data.adapterRoom;
 import com.example.example10.model.Room;
 
-public class RoomListFragment extends ListFragment {
-	
+public class RoomListFragment extends Fragment implements OnItemClickListener {
+	private ListView list;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		return super.onCreateView(inflater, container, savedInstanceState);
+			Bundle savedInstanceState) {		
+		View view = inflater.inflate(R.layout.roomlistlayout, null);
+        list = (ListView)view.findViewById(R.id.list);
+        return view;
+
 	}
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,8 +51,30 @@ public class RoomListFragment extends ListFragment {
         
         
         adapterRoom adapter = new adapterRoom(getActivity(), rooms);
+        list.setOnItemClickListener(this);
+        list.setAdapter(adapter);
         
-        setListAdapter(adapter);
 	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+        Room clicked_room = (Room) list.getItemAtPosition(arg2);
+        if (MainFragment.orientation ==  Configuration.ORIENTATION_PORTRAIT ) {
+	        Intent intent = new Intent (getActivity(), RoomDetailActivity.class);
+	        intent.putExtra("DESC", clicked_room.getDescripcion());
+	        intent.putExtra("PRECIO", clicked_room.getPrecio());
+	        intent.putExtra("TITULO", clicked_room.getTitulo());
+	        startActivity(intent);
+        }
+    /*    Fragment f = new Fragment();
+		FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().
+        //               .replace(R.id.details, f)
+          //             .commit();
+        //Fragment f = (Fragment) new RoomDetailActivity();
+         * 
+         */
+	}
+	
 		
 }

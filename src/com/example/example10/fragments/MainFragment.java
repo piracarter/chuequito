@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.FragmentTransaction;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -21,7 +22,20 @@ public class MainFragment extends Fragment implements TabListener, ViewPager.OnP
 
 	CustomPagerAdapter adapter;
     private ViewPager view_pager;
-
+    public static int orientation;
+    @Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		orientation = getResources().getConfiguration().orientation;
+		String mensaje = null;
+		if (orientation == Configuration.ORIENTATION_LANDSCAPE)
+			mensaje = "Orientation LANDSCAPE";
+		
+		if (orientation == Configuration.ORIENTATION_PORTRAIT)
+			mensaje = "Orientation PORTRAIT";
+		
+		Log.d("ORIENTATION_TEST", "getOrientation(): " + mensaje);
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -50,7 +64,7 @@ public class MainFragment extends Fragment implements TabListener, ViewPager.OnP
         adapter = new CustomPagerAdapter(getActivity().getSupportFragmentManager());
         view_pager.setAdapter(adapter);
         view_pager.setOnPageChangeListener(this);
-
+        Log.d("Debug", "Solo para verificar que este metodo se ejecuta cada vez que se cambia la orientacion");
 	}
 	@Override
 	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
