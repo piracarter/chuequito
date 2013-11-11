@@ -66,14 +66,18 @@ public class RoomListFragment extends Fragment implements OnItemClickListener {
 	        intent.putExtra("TITULO", clicked_room.getTitulo());
 	        startActivity(intent);
         }
-    /*    Fragment f = new Fragment();
-		FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().
-        //               .replace(R.id.details, f)
-          //             .commit();
-        //Fragment f = (Fragment) new RoomDetailActivity();
-         * 
-         */
+    
+        if (MainFragment.orientation ==  Configuration.ORIENTATION_LANDSCAPE ) {
+            FragmentManager fragmentManager = getFragmentManager();
+            
+            RoomDetailFragment f = new RoomDetailFragment();
+            f.init(clicked_room.getDescripcion(), clicked_room.getPrecio());
+            
+            fragmentManager.beginTransaction()
+                           .replace(R.id.details, f)
+                           .commit();
+
+        }
 	}
 	
 		
